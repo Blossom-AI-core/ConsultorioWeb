@@ -324,9 +324,6 @@ const Specialties = () => {
                         </div>
                         <h3 className="text-xl mb-4">{item.name}</h3>
                         <p className="text-text-dim text-sm mb-6">{item.desc}</p>
-                        <div className="flex items-center justify-center gap-1 text-primary text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                            SABER MÁS <ChevronRight size={14} />
-                        </div>
                     </motion.div>
                 ))}
             </div>
