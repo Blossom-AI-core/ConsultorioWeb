@@ -51,10 +51,10 @@ const Navbar = () => {
     return (
         <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-panel py-4' : 'bg-transparent py-6'}`}>
             <div className="max-width-1400 px-8 flex justify-between items-center mx-auto">
-                <div className="text-2xl font-bold flex items-center gap-2">
+                <a href="#hero" className="text-2xl font-bold flex items-center gap-2 hover:opacity-80 transition-opacity">
                     <Activity className="text-primary" />
                     <span className="font-playfair italic">CMI</span><span className="text-primary text-sm font-sans tracking-widest ml-2">CONSULTORIOS IRIGOYEN</span>
-                </div>
+                </a>
 
                 <div className="hidden md:flex gap-8 items-center">
                     {navLinks.map(link => (
