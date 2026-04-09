@@ -14,7 +14,14 @@ import {
     Bone,
     Target,
     ChevronRight,
-    Users
+    Users,
+    Baby,
+    Scissors,
+    Heart,
+    Dumbbell,
+    FlaskConical,
+    Smile,
+    User
 } from 'lucide-react'
 
 // Sections components
@@ -30,7 +37,7 @@ const Navbar = () => {
 
     const navLinks = [
         { name: 'Nosotros', href: '#nosotros' },
-        { name: 'Especialidades', href: '#especialidades' },
+        { name: 'Servicios Médicos', href: '#servicios' },
         { name: 'Contacto', href: '#contacto' }
     ]
 
@@ -175,18 +182,27 @@ const About = () => (
 
 const Specialties = () => {
     const list = [
-        { name: "Medicina del deporte + Ortopedia y traumatología", icon: <Bone />, desc: "Abordaje integral de lesiones deportivas y traumatológicas de alta complejidad." },
-        { name: "Otorrinolaringología", icon: <Ear />, desc: "Especialistas en el tratamiento avanzado de oído, nariz y garganta." },
-        { name: "Neurocirugía", icon: <Brain />, desc: "Expertos en cirugías complejas del cerebro y sistema nervioso." },
-        { name: "Ortopedia y traumatología", icon: <Stethoscope />, desc: "Prevención, diagnóstico y tratamiento de trastornos musculoesqueléticos." },
-        { name: "Nutrición", icon: <Apple />, desc: "Planes personalizados para un rendimiento óptimo y salud duradera." }
+        { name: "Clínica Médica", icon: <Stethoscope />, desc: "Atención integral de la salud del adulto con diagnóstico y seguimiento personalizado." },
+        { name: "Pediatría", icon: <Baby />, desc: "Cuidado especializado de la salud de niños y adolescentes en todas las etapas." },
+        { name: "Neurocirugía", icon: <Brain />, desc: "Expertos en cirugías complejas del cerebro y sistema nervioso central y periférico." },
+        { name: "Cardiología", icon: <Heart />, desc: "Diagnóstico y tratamiento de enfermedades del corazón con tecnología de vanguardia." },
+        { name: "Traumatología", icon: <Bone />, desc: "Prevención, diagnóstico y tratamiento de lesiones del sistema musculoesquelético." },
+        { name: "Medicina del Deporte", icon: <Dumbbell />, desc: "Abordaje integral de lesiones deportivas y optimización del rendimiento físico." },
+        { name: "Cirugía General", icon: <Scissors />, desc: "Procedimientos quirúrgicos de alta complejidad con los más altos estándares de seguridad." },
+        { name: "Ginecología", icon: <User />, desc: "Atención integral de la salud femenina en todas las etapas de la vida." },
+        { name: "Obstetricia", icon: <Baby />, desc: "Acompañamiento profesional durante el embarazo, parto y puerperio." },
+        { name: "ORL", icon: <Ear />, desc: "Especialistas en el tratamiento avanzado de oído, nariz y garganta." },
+        { name: "Diabetología", icon: <FlaskConical />, desc: "Manejo integral y seguimiento personalizado de la diabetes y sus complicaciones." },
+        { name: "Nutrición", icon: <Apple />, desc: "Planes nutricionales personalizados para un rendimiento óptimo y salud duradera." },
+        { name: "Psiquiatría", icon: <Brain />, desc: "Diagnóstico y tratamiento de trastornos mentales con un enfoque humano e integral." },
+        { name: "Psicología", icon: <Smile />, desc: "Apoyo psicoterapéutico para el bienestar emocional y la salud mental." }
     ]
 
     return (
-        <section id="especialidades" className="py-24 bg-slate-900/50">
+        <section id="servicios" className="py-24 bg-slate-900/50">
             <div className="text-center mb-16">
                 <span className="text-primary font-semibold tracking-widest text-xs uppercase mb-4 block">Servicios de Excelencia</span>
-                <h2 className="text-4xl md:text-5xl">Nuestras Especialidades</h2>
+                <h2 className="text-4xl md:text-5xl">Servicios Médicos</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -199,7 +215,7 @@ const Specialties = () => {
                         <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all transform group-hover:rotate-6">
                             {item.icon}
                         </div>
-                        <h3 className="text-2xl mb-4">{item.name}</h3>
+                        <h3 className="text-xl mb-4">{item.name}</h3>
                         <p className="text-text-dim text-sm mb-6">{item.desc}</p>
                         <div className="flex items-center justify-center gap-1 text-primary text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">
                             SABER MÁS <ChevronRight size={14} />
