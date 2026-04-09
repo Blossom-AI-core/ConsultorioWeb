@@ -116,8 +116,8 @@ const Hero = () => (
                 Contamos con especialistas de primer nivel y la tecnología más avanzada para brindarte la atención que tú y tu familia merecen.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="btn-primary text-lg px-10">Nuestros Servicios</button>
-                <button className="px-8 py-4 rounded-full border border-white/20 hover:bg-white/5 transition-all text-lg font-medium">Sobre Nosotros</button>
+                <a href="#servicios" className="btn-primary text-lg px-10 text-center">Nuestros Servicios</a>
+                <a href="#nosotros" className="px-8 py-4 rounded-full border border-white/20 hover:bg-white/5 transition-all text-lg font-medium text-center">Sobre Nosotros</a>
             </div>
         </motion.div>
 
