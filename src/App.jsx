@@ -340,7 +340,8 @@ const Contact = () => (
                 <div className="glass-panel p-10 flex flex-col items-center text-center group hover:bg-primary/5 transition-all">
                     <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"><Phone /></div>
                     <p className="text-xs text-text-dim uppercase tracking-widest mb-2">WhatsApp / Tel</p>
-                    <p className="text-2xl font-semibold">351 707 0030</p>
+                    <a target="_blank" rel="noopener noreferrer" className="text-2xl font-semibold hover:text-primary transition-colors select-none">351 707 0030</a>
+                    <a target="_blank" rel="noopener noreferrer" className="text-2xl font-semibold hover:text-primary transition-colors mt-1 select-none">351 595 5800</a>
                 </div>
 
                 <div className="glass-panel p-10 flex flex-col items-center text-center group hover:bg-primary/5 transition-all">
