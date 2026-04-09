@@ -21,7 +21,14 @@ import {
     Dumbbell,
     FlaskConical,
     Smile,
-    User
+    User,
+    Building2,
+    Wifi,
+    ShieldCheck,
+    Cpu,
+    Network,
+    ClipboardList,
+    FileText
 } from 'lucide-react'
 
 // Sections components
@@ -164,21 +171,121 @@ const About = () => (
                 <span className="text-primary font-semibold tracking-widest text-xs uppercase mb-4 block">Sobre Nosotros</span>
                 <h2 className="text-4xl md:text-5xl mb-8">¿Quiénes Somos?</h2>
                 <p className="text-text-dim text-lg mb-6">
-                    CMI - Consultorios Médicos Irigoyen es un centro de salud líder en Nueva Córdoba, fundado con el objetivo de humanizar la práctica de la medicina. Durante más de una década, hemos combinado la calidez humana con el rigor científico.
+                    Consultorios Médicos Irigoyen (CMI) es un Centro Médico Ambulatorio de Atención Primaria orientado a brindar servicios médicos integrales, combinando asistencia presencial, telemedicina y soluciones tecnológicas aplicadas a la salud.
                 </p>
                 <p className="text-text-dim text-lg mb-8">
-                    Nuestro equipo está compuesto por profesionales certificados internacionalmente, dedicados a proporcionar soluciones diagnósticas precisas y tratamientos vanguardistas.
+                    Nuestro equipo está compuesto por profesionales certificados, dedicados a proporcionar soluciones diagnósticas precisas y tratamientos vanguardistas con gestión digital integral del paciente.
                 </p>
                 <div className="grid grid-cols-1 gap-6">
                     <div className="glass-panel p-8">
-                        <h3 className="text-2xl mb-4 flex items-center gap-3"><Target className="text-primary w-6 h-6" /> Nuestra Misión</h3>
-                        <p className="text-text-dim text-lg">Transformar la vida de nuestros pacientes mediante una atención médica excepcional, basada en la integridad y el respeto constante por el bienestar humano.</p>
+                        <h3 className="text-xl mb-4 flex items-center gap-3"><Target className="text-primary w-5 h-5" /> Nuestra Misión</h3>
+                        <p className="text-text-dim">Transformar la experiencia de salud mediante atención médica excepcional, tecnología de última generación e integridad humana en cada diagnóstico y tratamiento.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 )
+
+const Identity = () => {
+    const [openItem, setOpenItem] = useState(null)
+
+    const objectives = [
+        { icon: <Stethoscope />, title: "Atención Primaria Integral", desc: "Desarrollo de atención médica primaria abarcando todas las etapas del ciclo de salud del paciente." },
+        { icon: <Users />, title: "Múltiples Especialidades", desc: "Acceso a un amplio abanico de especialidades médicas bajo un mismo techo institucional." },
+        { icon: <Wifi />, title: "Telemedicina", desc: "Implementación de tecnología para consultas remotas, seguimientos y gestión de turnos digitales." },
+        { icon: <ShieldCheck />, title: "Calidad Asistencial", desc: "Protocolización médica rigurosa para garantizar estándares de excelencia en cada prestación." },
+        { icon: <Cpu />, title: "Gestión Digital", desc: "Gestión digital integral del paciente con sistemas informáticos y plataformas de inteligencia artificial." },
+        { icon: <Network />, title: "Redes de Prestadores", desc: "Gerenciamiento y administración de redes de prestadores y convenios con obras sociales y prepagas." },
+    ]
+
+    const services = [
+        "Administración de convenios con obras sociales y prepagas.",
+        "Gestión, explotación y administración de consultorios médicos y prestaciones ambulatorias.",
+        "Facturación y auditoría médica y administrativa.",
+        "Gerenciamiento y administración de redes de prestadores de salud.",
+        "Contratación de profesionales de la salud y personal administrativo.",
+        "Prestación directa de servicios médicos conforme habilitaciones vigentes.",
+        "Desarrollo e implementación de sistemas informáticos, plataformas digitales y soluciones tecnológicas basadas en inteligencia artificial.",
+    ]
+
+    return (
+        <section id="identidad" className="py-24">
+            {/* Objetivos Estratégicos */}
+            <div className="text-center mb-16">
+                <span className="text-primary font-semibold tracking-widest text-xs uppercase mb-4 block">Identidad Institucional</span>
+                <h2 className="text-4xl md:text-5xl">Objetivos Estratégicos</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                {objectives.map((obj, idx) => (
+                    <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.08 }}
+                        className="glass-panel p-6 flex gap-4 items-start group hover:bg-primary/5 transition-all"
+                    >
+                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                            {obj.icon}
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-semibold mb-1">{obj.title}</h3>
+                            <p className="text-text-dim text-sm">{obj.desc}</p>
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+
+            {/* Objeto Social */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="glass-panel p-8 md:p-12"
+            >
+                <button
+                    onClick={() => setOpenItem(openItem === 'obj' ? null : 'obj')}
+                    className="w-full flex justify-between items-center gap-4 text-left"
+                >
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary shrink-0">
+                            <FileText />
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary uppercase tracking-widest font-semibold mb-1">Objeto Social y Servicios Empresariales</p>
+                            <h3 className="text-xl font-semibold">Alcance institucional completo de TOPRAK S.A.</h3>
+                        </div>
+                    </div>
+                    <ChevronRight
+                        className={`text-primary shrink-0 transition-transform duration-300 ${openItem === 'obj' ? 'rotate-90' : ''}`}
+                        size={20}
+                    />
+                </button>
+
+                <AnimatePresence>
+                    {openItem === 'obj' && (
+                        <motion.ul
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.35 }}
+                            className="overflow-hidden mt-6 grid grid-cols-1 md:grid-cols-2 gap-3"
+                        >
+                            {services.map((s, i) => (
+                                <li key={i} className="flex gap-3 items-start text-text-dim text-sm">
+                                    <ClipboardList size={16} className="text-primary shrink-0 mt-0.5" />
+                                    {s}
+                                </li>
+                            ))}
+                        </motion.ul>
+                    )}
+                </AnimatePresence>
+            </motion.div>
+        </section>
+    )
+}
 
 const Specialties = () => {
     const list = [
