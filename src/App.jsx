@@ -31,7 +31,7 @@ import {
     FileText
 } from 'lucide-react'
 
-// Sections components
+// ─── Navbar ───────────────────────────────────────────────
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
@@ -49,24 +49,44 @@ const Navbar = () => {
     ]
 
     return (
-        <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-panel py-4' : 'bg-transparent py-6'}`}>
+        <nav
+            className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'nav-scrolled py-4' : 'nav-transparent py-6'}`}
+            style={{ borderRadius: 0 }}
+        >
             <div className="max-width-1400 px-8 flex justify-between items-center mx-auto">
-                <a href="#hero" className="text-2xl font-bold flex items-center gap-2 hover:opacity-80 transition-opacity">
-                    <Activity className="text-primary" />
-                    <span className="font-playfair italic">CMI</span><span className="text-primary text-sm font-sans tracking-widest ml-2">CONSULTORIOS IRIGOYEN</span>
+                <a href="#hero" className="flex items-center" style={{ opacity: 1 }}>
+                    <img src="/assets/logo.png" alt="CMI - Consultorios Médicos Irigoyen" style={{ height: '90px', width: 'auto' }} />
                 </a>
 
                 <div className="hidden md:flex gap-8 items-center">
                     {navLinks.map(link => (
-                        <a key={link.name} href={link.href} className="text-sm font-medium hover:text-primary tracking-wide transition-colors">
+                        <a
+                            key={link.name}
+                            href={link.href}
+                            className="text-sm font-medium tracking-wide"
+                            style={{ color: 'var(--text-secondary)' }}
+                            onMouseEnter={e => e.target.style.color = 'var(--primary)'}
+                            onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
+                        >
                             {link.name.toUpperCase()}
                         </a>
                     ))}
+                    <a
+                        href="#contacto"
+                        className="btn-primary text-sm"
+                        style={{ padding: '10px 24px', fontSize: '0.85rem' }}
+                    >
+                        Portal del Paciente
+                    </a>
                 </div>
 
                 {/* Mobile menu toggle */}
-                <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? <X /> : <Menu />}
+                <button
+                    className="md:hidden"
+                    onClick={() => setIsOpen(!isOpen)}
+                    style={{ color: 'var(--text-main)', background: 'none', border: 'none', cursor: 'pointer' }}
+                >
+                    {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
@@ -77,18 +97,21 @@ const Navbar = () => {
                         initial={{ opacity: 0, x: 100 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 100 }}
-                        className="fixed inset-0 h-screen bg-slate-900 z-40 flex flex-col items-center justify-center gap-8 text-2xl pt-20"
+                        className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 text-2xl pt-20 mobile-nav-overlay"
                     >
                         {navLinks.map(link => (
                             <a
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => setIsOpen(false)}
-                                className="hover:text-primary"
+                                style={{ color: 'var(--text-main)' }}
                             >
                                 {link.name}
                             </a>
                         ))}
+                        <a href="#contacto" className="btn-primary" onClick={() => setIsOpen(false)}>
+                            Portal del Paciente
+                        </a>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -96,6 +119,7 @@ const Navbar = () => {
     )
 }
 
+// ─── Hero ─────────────────────────────────────────────────
 const Hero = () => (
     <section className="min-h-screen flex flex-col items-center justify-center relative pt-20 overflow-hidden" id="hero">
         <div className="hero-bg" />
@@ -103,83 +127,95 @@ const Hero = () => (
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl"
+            className="text-center"
+            style={{ maxWidth: '48rem' }}
         >
-            <span className="px-4 py-1 rounded-full border border-primary/30 text-xs font-semibold tracking-widest text-primary mb-6 inline-block bg-primary/5 uppercase">
+            <span className="badge-accent mb-6" style={{ display: 'inline-block' }}>
                 Excelencia médica personalizada
             </span>
-            <h1 className="text-6xl md:text-8xl mb-8 leading-tight">
+            <h1 className="mb-8 leading-tight" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
                 Tu salud es nuestra <br />
-                <span className="text-primary italic">prioridad absoluta</span>
+                <span style={{ color: 'var(--primary)' }}>prioridad absoluta</span>
             </h1>
-            <p className="text-text-dim text-lg md:text-xl mb-12 max-w-2xl mx-auto">
+            <p className="text-lg mb-12 mx-auto" style={{ color: 'var(--text-dim)', maxWidth: '42rem', lineHeight: '1.8' }}>
                 Contamos con especialistas de primer nivel y la tecnología más avanzada para brindarte la atención que tú y tu familia merecen.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#servicios" className="btn-primary text-lg px-10 text-center">Nuestros Servicios</a>
-                <a href="#nosotros" className="px-8 py-4 rounded-full border border-white/20 hover:bg-white/5 transition-all text-lg font-medium text-center">Sobre Nosotros</a>
+                <a href="#nosotros" className="btn-secondary text-lg text-center">Sobre Nosotros</a>
             </div>
         </motion.div>
 
-        {/* Floating elements for "high-end" vibe */}
+        {/* Decorative floating circles */}
         <motion.div
-            animate={{ y: [0, -20, 0], opacity: [0.3, 0.6, 0.3] }}
+            animate={{ y: [0, -20, 0], opacity: [0.15, 0.3, 0.15] }}
             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            className="absolute top-1/4 left-[10%] opacity-20 hidden lg:block"
+            className="absolute hidden lg:block"
+            style={{ top: '25%', left: '10%' }}
         >
-            <div className="w-32 h-32 rounded-full border-2 border-primary/20 blur-sm" />
+            <div style={{
+                width: '8rem', height: '8rem', borderRadius: '50%',
+                border: '2px solid rgba(13, 148, 136, 0.15)', filter: 'blur(1px)'
+            }} />
         </motion.div>
         <motion.div
-            animate={{ y: [0, 20, 0], opacity: [0.2, 0.4, 0.2] }}
+            animate={{ y: [0, 20, 0], opacity: [0.1, 0.25, 0.1] }}
             transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-            className="absolute bottom-1/4 right-[15%] opacity-20 hidden lg:block"
+            className="absolute hidden lg:block"
+            style={{ bottom: '25%', right: '15%' }}
         >
-            <div className="w-64 h-64 rounded-full border-2 border-primary/10 blur-md" />
+            <div style={{
+                width: '16rem', height: '16rem', borderRadius: '50%',
+                border: '2px solid rgba(13, 148, 136, 0.08)', filter: 'blur(2px)'
+            }} />
         </motion.div>
     </section>
 )
 
+// ─── About ────────────────────────────────────────────────
 const About = () => (
-    <section id="nosotros" className="py-24">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
+    <section id="nosotros" style={{ padding: '80px 5%' }}>
+        <div className="flex flex-col lg:flex-row gap-16 items-center" style={{ maxWidth: '1400px', margin: '0 auto' }}>
             <div className="w-full lg:w-1/2 relative">
-                <div className="aspect-[4/5] rounded-[40px] overflow-hidden glass-panel p-4 relative z-10">
-                    <div className="w-full h-full rounded-[30px] bg-slate-800 relative overflow-hidden">
+                <div className="overflow-hidden relative z-10" style={{
+                    aspectRatio: '4/5', borderRadius: '24px',
+                    boxShadow: 'var(--shadow-card)', border: '1px solid var(--border-light)', padding: '0.5rem',
+                    background: 'var(--bg-card)'
+                }}>
+                    <div className="w-full h-full relative overflow-hidden" style={{ borderRadius: '20px', background: '#e5e7eb' }}>
                         <img
                             src="/assets/hero.png"
                             alt="Nuestro Equipo Médico"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full"
+                            style={{ objectFit: 'cover' }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent z-10" />
-                        <p className="absolute bottom-8 left-8 right-8 z-20 text-white/90 font-playfair italic text-xl">
+                        <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.4), transparent)' }} />
+                        <p className="absolute z-20 font-playfair italic text-xl" style={{
+                            bottom: '2rem', left: '2rem', right: '2rem', color: 'rgba(255,255,255,0.95)'
+                        }}>
                             "El compromiso con la vida es nuestra razón de ser, brindando soluciones humanas para cada paciente."
                         </p>
                     </div>
                 </div>
-                <div className="absolute -bottom-8 -right-8 glass-panel p-6 z-20 max-w-xs animate-fade hidden sm:block">
-                    <div className="flex gap-4 items-center">
-                        <div className="p-3 bg-primary/20 rounded-xl text-primary"><Users /></div>
-                        <div>
-                            <p className="text-3xl font-bold">+15k</p>
-                            <p className="text-xs text-text-dim uppercase tracking-widest font-semibold">Pacientes Felices</p>
-                        </div>
-                    </div>
-                </div>
+
+
             </div>
 
             <div className="w-full lg:w-1/2">
-                <span className="text-primary font-semibold tracking-widest text-xs uppercase mb-4 block">Sobre Nosotros</span>
-                <h2 className="text-4xl md:text-5xl mb-8">¿Quiénes Somos?</h2>
-                <p className="text-text-dim text-lg mb-6">
+                <span className="font-semibold tracking-widest text-xs uppercase mb-4" style={{ color: 'var(--primary)', display: 'block' }}>Sobre Nosotros</span>
+                <h2 className="text-4xl mb-8">¿Quiénes Somos?</h2>
+                <p className="text-lg mb-6" style={{ color: 'var(--text-secondary)', lineHeight: '1.8' }}>
                     Consultorios Médicos Irigoyen (CMI) es un Centro Médico Ambulatorio de Atención Primaria orientado a brindar servicios médicos integrales, combinando asistencia presencial, telemedicina y soluciones tecnológicas aplicadas a la salud.
                 </p>
-                <p className="text-text-dim text-lg mb-8">
+                <p className="text-lg mb-8" style={{ color: 'var(--text-secondary)', lineHeight: '1.8' }}>
                     Nuestro equipo está compuesto por profesionales certificados, dedicados a proporcionar soluciones diagnósticas precisas y tratamientos vanguardistas con gestión digital integral del paciente.
                 </p>
                 <div className="grid grid-cols-1 gap-6">
                     <div className="glass-panel p-8">
-                        <h3 className="text-xl mb-4 flex items-center gap-3"><Target className="text-primary w-5 h-5" /> Nuestra Misión</h3>
-                        <p className="text-text-dim">Transformar la experiencia de salud mediante atención médica excepcional, tecnología de última generación e integridad humana en cada diagnóstico y tratamiento.</p>
+                        <h3 className="text-xl mb-4 flex items-center gap-3">
+                            <Target style={{ color: 'var(--primary)', width: '1.25rem', height: '1.25rem' }} /> Nuestra Misión
+                        </h3>
+                        <p style={{ color: 'var(--text-dim)' }}>Transformar la experiencia de salud mediante atención médica excepcional, tecnología de última generación e integridad humana en cada diagnóstico y tratamiento.</p>
                     </div>
                 </div>
             </div>
@@ -187,16 +223,17 @@ const About = () => (
     </section>
 )
 
+// ─── Identity ─────────────────────────────────────────────
 const Identity = () => {
     const [openItem, setOpenItem] = useState(null)
 
     const objectives = [
-        { icon: <Stethoscope />, title: "Atención Primaria Integral", desc: "Desarrollo de atención médica primaria abarcando todas las etapas del ciclo de salud del paciente." },
-        { icon: <Users />, title: "Múltiples Especialidades", desc: "Acceso a un amplio abanico de especialidades médicas bajo un mismo techo institucional." },
-        { icon: <Wifi />, title: "Telemedicina", desc: "Implementación de tecnología para consultas remotas, seguimientos y gestión de turnos digitales." },
-        { icon: <ShieldCheck />, title: "Calidad Asistencial", desc: "Protocolización médica rigurosa para garantizar estándares de excelencia en cada prestación." },
-        { icon: <Cpu />, title: "Gestión Digital", desc: "Gestión digital integral del paciente con sistemas informáticos y plataformas de inteligencia artificial." },
-        { icon: <Network />, title: "Redes de Prestadores", desc: "Gerenciamiento y administración de redes de prestadores y convenios con obras sociales y prepagas." },
+        { icon: <Stethoscope size={22} />, title: "Atención Primaria Integral", desc: "Desarrollo de atención médica primaria abarcando todas las etapas del ciclo de salud del paciente." },
+        { icon: <Users size={22} />, title: "Múltiples Especialidades", desc: "Acceso a un amplio abanico de especialidades médicas bajo un mismo techo institucional." },
+        { icon: <Wifi size={22} />, title: "Telemedicina", desc: "Implementación de tecnología para consultas remotas, seguimientos y gestión de turnos digitales." },
+        { icon: <ShieldCheck size={22} />, title: "Calidad Asistencial", desc: "Protocolización médica rigurosa para garantizar estándares de excelencia en cada prestación." },
+        { icon: <Cpu size={22} />, title: "Gestión Digital", desc: "Gestión digital integral del paciente con sistemas informáticos y plataformas de inteligencia artificial." },
+        { icon: <Network size={22} />, title: "Redes de Prestadores", desc: "Gerenciamiento y administración de redes de prestadores y convenios con obras sociales y prepagas." },
     ]
 
     const services = [
@@ -210,180 +247,170 @@ const Identity = () => {
     ]
 
     return (
-        <section id="identidad" className="py-24">
-            {/* Objetivos Estratégicos */}
-            <div className="text-center mb-16">
-                <span className="text-primary font-semibold tracking-widest text-xs uppercase mb-4 block">Identidad Institucional</span>
-                <h2 className="text-4xl md:text-5xl">Objetivos Estratégicos</h2>
-            </div>
+        <section id="identidad" style={{ padding: '80px 5%', background: 'var(--bg-section-alt)' }}>
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                {/* Header */}
+                <div className="text-center mb-16">
+                    <span className="font-semibold tracking-widest text-xs uppercase mb-4" style={{ color: 'var(--primary)', display: 'block' }}>Identidad Institucional</span>
+                    <h2 className="text-4xl">Objetivos Estratégicos</h2>
+                </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-                {objectives.map((obj, idx) => (
-                    <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.08 }}
-                        className="glass-panel p-6 flex gap-4 items-start group hover:bg-primary/5 transition-all"
-                    >
-                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
-                            {obj.icon}
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-semibold mb-1">{obj.title}</h3>
-                            <p className="text-text-dim text-sm">{obj.desc}</p>
-                        </div>
-                    </motion.div>
-                ))}
-            </div>
-
-            {/* Objeto Social */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="glass-panel p-8 md:p-12"
-            >
-                <button
-                    onClick={() => setOpenItem(openItem === 'obj' ? null : 'obj')}
-                    className="w-full flex justify-between items-center gap-4 text-left"
-                >
-                    <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary shrink-0">
-                            <FileText />
-                        </div>
-                        <div>
-                            <p className="text-xs text-primary uppercase tracking-widest font-semibold mb-1">Objeto Social y Servicios Empresariales</p>
-                            <h3 className="text-xl font-semibold">Alcance institucional completo de TOPRAK S.A.</h3>
-                        </div>
-                    </div>
-                    <ChevronRight
-                        className={`text-primary shrink-0 transition-transform duration-300 ${openItem === 'obj' ? 'rotate-90' : ''}`}
-                        size={20}
-                    />
-                </button>
-
-                <AnimatePresence>
-                    {openItem === 'obj' && (
-                        <motion.ul
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.35 }}
-                            className="overflow-hidden mt-6 grid grid-cols-1 md:grid-cols-2 gap-3"
+                {/* Objectives grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                    {objectives.map((obj, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.08 }}
+                            className="glass-panel p-6 flex gap-4 items-start cursor-pointer"
+                            style={{ transition: 'var(--transition)' }}
                         >
-                            {services.map((s, i) => (
-                                <li key={i} className="flex gap-3 items-start text-text-dim text-sm">
-                                    <ClipboardList size={16} className="text-primary shrink-0 mt-0.5" />
-                                    {s}
-                                </li>
-                            ))}
-                        </motion.ul>
-                    )}
-                </AnimatePresence>
-            </motion.div>
+                            <div className="icon-square">
+                                {obj.icon}
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-semibold mb-1" style={{ color: 'var(--text-main)' }}>{obj.title}</h3>
+                                <p className="text-sm" style={{ color: 'var(--text-dim)' }}>{obj.desc}</p>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+
+            </div>
         </section>
     )
 }
 
+// ─── Specialties ──────────────────────────────────────────
 const Specialties = () => {
     const list = [
-        { name: "Clínica Médica", icon: <Stethoscope />, desc: "Atención integral de la salud del adulto con diagnóstico y seguimiento personalizado." },
-        { name: "Pediatría", icon: <Baby />, desc: "Cuidado especializado de la salud de niños y adolescentes en todas las etapas." },
-        { name: "Neurocirugía", icon: <Brain />, desc: "Expertos en cirugías complejas del cerebro y sistema nervioso central y periférico." },
-        { name: "Cardiología", icon: <Heart />, desc: "Diagnóstico y tratamiento de enfermedades del corazón con tecnología de vanguardia." },
-        { name: "Traumatología", icon: <Bone />, desc: "Prevención, diagnóstico y tratamiento de lesiones del sistema musculoesquelético." },
-        { name: "Medicina del Deporte", icon: <Dumbbell />, desc: "Abordaje integral de lesiones deportivas y optimización del rendimiento físico." },
-        { name: "Cirugía General", icon: <Scissors />, desc: "Procedimientos quirúrgicos de alta complejidad con los más altos estándares de seguridad." },
-        { name: "Ginecología", icon: <User />, desc: "Atención integral de la salud femenina en todas las etapas de la vida." },
-        { name: "Obstetricia", icon: <Baby />, desc: "Acompañamiento profesional durante el embarazo, parto y puerperio." },
-        { name: "ORL", icon: <Ear />, desc: "Especialistas en el tratamiento avanzado de oído, nariz y garganta." },
-        { name: "Diabetología", icon: <FlaskConical />, desc: "Manejo integral y seguimiento personalizado de la diabetes y sus complicaciones." },
-        { name: "Nutrición", icon: <Apple />, desc: "Planes nutricionales personalizados para un rendimiento óptimo y salud duradera." },
-        { name: "Psiquiatría", icon: <Brain />, desc: "Diagnóstico y tratamiento de trastornos mentales con un enfoque humano e integral." },
-        { name: "Psicología", icon: <Smile />, desc: "Apoyo psicoterapéutico para el bienestar emocional y la salud mental." }
+        { name: "Clínica Médica", icon: <Stethoscope size={24} />, desc: "Atención integral de la salud del adulto con diagnóstico y seguimiento personalizado." },
+        { name: "Pediatría", icon: <Baby size={24} />, desc: "Cuidado especializado de la salud de niños y adolescentes en todas las etapas." },
+        { name: "Neurocirugía", icon: <Brain size={24} />, desc: "Expertos en cirugías complejas del cerebro y sistema nervioso central y periférico." },
+        { name: "Cardiología", icon: <Heart size={24} />, desc: "Diagnóstico y tratamiento de enfermedades del corazón con tecnología de vanguardia." },
+        { name: "Traumatología", icon: <Bone size={24} />, desc: "Prevención, diagnóstico y tratamiento de lesiones del sistema musculoesquelético." },
+        { name: "Medicina del Deporte", icon: <Dumbbell size={24} />, desc: "Abordaje integral de lesiones deportivas y optimización del rendimiento físico." },
+        { name: "Cirugía General", icon: <Scissors size={24} />, desc: "Procedimientos quirúrgicos de alta complejidad con los más altos estándares de seguridad." },
+        { name: "Ginecología", icon: <User size={24} />, desc: "Atención integral de la salud femenina en todas las etapas de la vida." },
+        { name: "Obstetricia", icon: <Baby size={24} />, desc: "Acompañamiento profesional durante el embarazo, parto y puerperio." },
+        { name: "ORL", icon: <Ear size={24} />, desc: "Especialistas en el tratamiento avanzado de oído, nariz y garganta." },
+        { name: "Diabetología", icon: <FlaskConical size={24} />, desc: "Manejo integral y seguimiento personalizado de la diabetes y sus complicaciones." },
+        { name: "Nutrición", icon: <Apple size={24} />, desc: "Planes nutricionales personalizados para un rendimiento óptimo y salud duradera." },
+        { name: "Psiquiatría", icon: <Brain size={24} />, desc: "Diagnóstico y tratamiento de trastornos mentales con un enfoque humano e integral." },
+        { name: "Psicología", icon: <Smile size={24} />, desc: "Apoyo psicoterapéutico para el bienestar emocional y la salud mental." }
     ]
 
     return (
-        <section id="servicios" className="py-24 bg-slate-900/50">
-            <div className="text-center mb-16">
-                <span className="text-primary font-semibold tracking-widest text-xs uppercase mb-4 block">Servicios de Excelencia</span>
-                <h2 className="text-4xl md:text-5xl">Servicios Médicos</h2>
-            </div>
+        <section id="servicios" style={{ padding: '80px 5%' }}>
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                <div className="text-center mb-16">
+                    <span className="font-semibold tracking-widest text-xs uppercase mb-4" style={{ color: 'var(--primary)', display: 'block' }}>Servicios de Excelencia</span>
+                    <h2 className="text-4xl">Servicios Médicos</h2>
+                </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {list.map((item, idx) => (
-                    <motion.div
-                        key={idx}
-                        whileHover={{ y: -10 }}
-                        className="glass-panel p-8 text-center group cursor-pointer"
-                    >
-                        <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all transform group-hover:rotate-6">
-                            {item.icon}
-                        </div>
-                        <h3 className="text-xl mb-4">{item.name}</h3>
-                        <p className="text-text-dim text-sm mb-6">{item.desc}</p>
-                    </motion.div>
-                ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {list.map((item, idx) => (
+                        <motion.div
+                            key={idx}
+                            whileHover={{ y: -6 }}
+                            className="glass-panel p-8 text-center cursor-pointer"
+                            style={{ transition: 'var(--transition)' }}
+                        >
+                            <div className="mx-auto mb-6" style={{
+                                width: '4rem', height: '4rem', borderRadius: 'var(--radius-lg)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                background: 'var(--primary-subtle)', color: 'var(--primary)',
+                                transition: 'var(--transition)'
+                            }}>
+                                {item.icon}
+                            </div>
+                            <h3 className="text-xl mb-4" style={{ color: 'var(--text-main)' }}>{item.name}</h3>
+                            <p className="text-sm mb-6" style={{ color: 'var(--text-dim)' }}>{item.desc}</p>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </section>
     )
 }
 
+// ─── Contact ──────────────────────────────────────────────
 const Contact = () => (
-    <section id="contacto" className="py-24">
-        <div className="glass-panel p-12 lg:p-24 overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/5 -skew-x-12 z-0 hidden lg:block" />
+    <section id="contacto" style={{ padding: '80px 5%', background: 'var(--bg-section-alt)' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <div className="text-center mb-16">
+                <span className="font-semibold tracking-widest text-xs uppercase mb-4" style={{ color: 'var(--primary)', display: 'block' }}>Estamos para vos</span>
+                <h2 className="text-4xl">Contactanos</h2>
+            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">
-                <div className="glass-panel p-10 flex flex-col items-center text-center group hover:bg-primary/5 transition-all">
-                    <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"><Phone /></div>
-                    <p className="text-xs text-text-dim uppercase tracking-widest mb-2">WhatsApp / Tel</p>
-                    <a target="_blank" rel="noopener noreferrer" className="text-2xl font-semibold hover:text-primary transition-colors select-none">351 707 0030</a>
-                    <a target="_blank" rel="noopener noreferrer" className="text-2xl font-semibold hover:text-primary transition-colors mt-1 select-none">351 595 5800</a>
-                </div>
+            <div className="glass-panel overflow-hidden relative" style={{ padding: 'clamp(2rem, 5vw, 4rem)' }}>
+                <div className="absolute top-0 right-0 z-0 hidden lg:block contact-decoration" style={{
+                    width: '33%', height: '100%', transform: 'skewX(-12deg)', transformOrigin: 'top right'
+                }} />
 
-                <div className="glass-panel p-10 flex flex-col items-center text-center group hover:bg-primary/5 transition-all">
-                    <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"><Mail /></div>
-                    <p className="text-xs text-text-dim uppercase tracking-widest mb-2">Email</p>
-                    <p className="text-xl font-semibold">contacto@consultoriosirigoyen.com</p>
-                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">
+                    {/* Phone */}
+                    <div className="glass-panel p-10 flex flex-col items-center text-center" style={{ transition: 'var(--transition)' }}>
+                        <div className="icon-circle mb-6" style={{ width: '4rem', height: '4rem' }}>
+                            <Phone size={22} />
+                        </div>
+                        <p className="text-xs uppercase tracking-widest mb-2" style={{ color: 'var(--text-dim)' }}>WhatsApp / Tel</p>
+                        <a className="text-2xl font-semibold select-none" style={{ color: 'var(--text-main)' }}>351 707 0030</a>
+                        <a className="text-2xl font-semibold select-none" style={{ color: 'var(--text-main)', marginTop: '0.25rem' }}>351 595 5800</a>
+                    </div>
 
-                <div className="glass-panel p-10 flex flex-col items-center text-center group hover:bg-primary/5 transition-all">
-                    <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"><MapPin /></div>
-                    <p className="text-xs text-text-dim uppercase tracking-widest mb-2">Ubicación</p>
-                    <p className="text-lg font-semibold">Hipólito Yrigoyen 31 Piso 8 <br /> Nueva Córdoba</p>
+                    {/* Email */}
+                    <div className="glass-panel p-10 flex flex-col items-center text-center" style={{ transition: 'var(--transition)' }}>
+                        <div className="icon-circle mb-6" style={{ width: '4rem', height: '4rem' }}>
+                            <Mail size={22} />
+                        </div>
+                        <p className="text-xs uppercase tracking-widest mb-2" style={{ color: 'var(--text-dim)' }}>Email</p>
+                        <p className="text-xl font-semibold" style={{ color: 'var(--text-main)' }}>contacto@consultoriosirigoyen.com</p>
+                    </div>
+
+                    {/* Location */}
+                    <div className="glass-panel p-10 flex flex-col items-center text-center" style={{ transition: 'var(--transition)' }}>
+                        <div className="icon-circle mb-6" style={{ width: '4rem', height: '4rem' }}>
+                            <MapPin size={22} />
+                        </div>
+                        <p className="text-xs uppercase tracking-widest mb-2" style={{ color: 'var(--text-dim)' }}>Ubicación</p>
+                        <p className="text-lg font-semibold" style={{ color: 'var(--text-main)' }}>Hipólito Yrigoyen 31 Piso 8 <br /> Nueva Córdoba</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 )
 
+// ─── Footer ───────────────────────────────────────────────
 const Footer = () => (
-    <footer className="py-12 border-t border-white/5 mt-20">
+    <footer className="footer-dark" style={{ padding: '3.5rem 0', marginTop: 0 }}>
         <div className="max-width-1400 px-8 mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="text-2xl font-bold flex items-center gap-2">
-                <Activity className="text-primary" />
-                <span className="font-playfair italic">CMI</span><span className="text-primary text-sm font-sans tracking-widest ml-2">CONSULTORIOS IRIGOYEN</span>
+            <div className="flex items-center">
+                <img src="/assets/logo.png" alt="CMI - Consultorios Médicos Irigoyen" style={{ height: '108px', width: 'auto', filter: 'brightness(0) invert(1)' }} />
             </div>
-            <p className="text-text-dim text-sm">© 2026 CMI - Consultorios Médicos Irigoyen. Todos los derechos reservados.</p>
-            <p className="text-primary text-xs font-semibold uppercase tracking-widest">Excelencia Médica en Nueva Córdoba</p>
+            <p className="text-sm" style={{ color: 'var(--text-on-dark-dim)' }}>© 2026 CMI - Consultorios Médicos Irigoyen. Todos los derechos reservados.</p>
+            <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--primary-light)' }}>Excelencia Médica en Nueva Córdoba</p>
             <div className="flex gap-6">
-                <a href="#" className="text-text-dim hover:text-primary">Instagram</a>
-                <a href="#" className="text-text-dim hover:text-primary">LinkedIn</a>
-                <a href="#" className="text-text-dim hover:text-primary">WhatsApp</a>
+                <a href="#" style={{ color: 'var(--text-on-dark-dim)' }}>Instagram</a>
+                <a href="#" style={{ color: 'var(--text-on-dark-dim)' }}>LinkedIn</a>
+                <a href="#" style={{ color: 'var(--text-on-dark-dim)' }}>WhatsApp</a>
             </div>
         </div>
     </footer>
 )
 
+// ─── App ──────────────────────────────────────────────────
 function App() {
     return (
-        <div className="app-container selection:bg-primary selection:text-white">
+        <div className="app-container" style={{ background: 'var(--bg-main)' }}>
             <Navbar />
             <Hero />
             <About />
+            <Identity />
             <Specialties />
             <Contact />
             <Footer />
