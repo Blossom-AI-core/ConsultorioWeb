@@ -134,8 +134,8 @@ const Hero = () => (
                 Excelencia médica personalizada
             </span>
             <h1 className="mb-8 leading-tight" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
-                Tu salud es nuestra <br />
-                <span style={{ color: 'var(--primary)' }}>prioridad absoluta</span>
+                Cuidando tu salud, <br />
+                <span style={{ color: 'var(--primary)' }}>cuidando tu vida.</span>
             </h1>
             <p className="text-lg mb-12 mx-auto" style={{ color: 'var(--text-dim)', maxWidth: '42rem', lineHeight: '1.8' }}>
                 Contamos con especialistas de primer nivel y la tecnología más avanzada para brindarte la atención que tú y tu familia merecen.
@@ -205,11 +205,11 @@ const About = () => (
                 <span className="font-semibold tracking-widest text-xs uppercase mb-4" style={{ color: 'var(--primary)', display: 'block' }}>Sobre Nosotros</span>
                 <h2 className="text-4xl mb-8">¿Quiénes Somos?</h2>
                 <p className="text-lg mb-6" style={{ color: 'var(--text-secondary)', lineHeight: '1.8' }}>
-                    Consultorios Médicos Irigoyen (CMI) es un Centro Médico Ambulatorio de Atención Primaria orientado a brindar servicios médicos integrales, combinando asistencia presencial, telemedicina y soluciones tecnológicas aplicadas a la salud.
+                    Somos CMI - Consultorios Médicos Irigoyen — un centro médico ambulatorio que combina profesionales certificados, tecnología de última generación y calidez humana en el corazón de Nueva Córdoba.
                 </p>
-                <p className="text-lg mb-8" style={{ color: 'var(--text-secondary)', lineHeight: '1.8' }}>
+                {/* <p className="text-lg mb-8" style={{ color: 'var(--text-secondary)', lineHeight: '1.8' }}>
                     Nuestro equipo está compuesto por profesionales certificados, dedicados a proporcionar soluciones diagnósticas precisas y tratamientos vanguardistas con gestión digital integral del paciente.
-                </p>
+                </p> */}
                 <div className="grid grid-cols-1 gap-6">
                     <div className="glass-panel p-8">
                         <h3 className="text-xl mb-4 flex items-center gap-3">
