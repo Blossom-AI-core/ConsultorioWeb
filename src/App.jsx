@@ -71,13 +71,13 @@ const Navbar = () => {
                             {link.name.toUpperCase()}
                         </a>
                     ))}
-                    <a
+                    {/* <a
                         href="#contacto"
                         className="btn-primary text-sm"
                         style={{ padding: '10px 24px', fontSize: '0.85rem' }}
                     >
-                        Portal del Paciente
-                    </a>
+                        WhatsApp
+                    </a> */}
                 </div>
 
                 {/* Mobile menu toggle */}
@@ -109,9 +109,9 @@ const Navbar = () => {
                                 {link.name}
                             </a>
                         ))}
-                        <a href="#contacto" className="btn-primary" onClick={() => setIsOpen(false)}>
-                            Portal del Paciente
-                        </a>
+                        {/* <a href="#contacto" className="btn-primary" onClick={() => setIsOpen(false)}>
+                            WhatsApp
+                        </a> */}
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -359,7 +359,7 @@ const Contact = () => (
                         </div>
                         <p className="text-xs uppercase tracking-widest mb-2" style={{ color: 'var(--text-dim)' }}>WhatsApp / Tel</p>
                         <a className="text-2xl font-semibold select-none" style={{ color: 'var(--text-main)' }}>351 707 0030</a>
-                        <a className="text-2xl font-semibold select-none" style={{ color: 'var(--text-main)', marginTop: '0.25rem' }}>351 595 5800</a>
+                        <a className="text-2xl font-semibold select-none" style={{ color: 'var(--text-main)', marginTop: '0.25rem' }}>351 595 5800 (Bot)</a>
                     </div>
 
                     {/* Email */}
@@ -368,7 +368,7 @@ const Contact = () => (
                             <Mail size={22} />
                         </div>
                         <p className="text-xs uppercase tracking-widest mb-2" style={{ color: 'var(--text-dim)' }}>Email</p>
-                        <p className="text-xl font-semibold" style={{ color: 'var(--text-main)' }}>contacto@consultoriosirigoyen.com</p>
+                        <p className="text-xl font-semibold" style={{ color: 'var(--text-main)' }}>cmiconsultoriosadm@gmail.com</p>
                     </div>
 
                     {/* Location */}
