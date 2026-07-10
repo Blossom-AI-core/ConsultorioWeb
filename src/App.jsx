@@ -314,7 +314,15 @@ const Specialties = () => {
         { name: "Diabetología", icon: <FlaskConical size={24} />, desc: "Manejo integral y seguimiento personalizado de la diabetes y sus complicaciones." },
         { name: "Nutrición", icon: <Apple size={24} />, desc: "Planes nutricionales personalizados para un rendimiento óptimo y salud duradera." },
         { name: "Psiquiatría", icon: <Brain size={24} />, desc: "Diagnóstico y tratamiento de trastornos mentales con un enfoque humano e integral." },
-        { name: "Psicología", icon: <Smile size={24} />, desc: "Apoyo psicoterapéutico para el bienestar emocional y la salud mental." }
+        { name: "Psicología", icon: <Smile size={24} />, desc: "Apoyo psicoterapéutico para el bienestar emocional y la salud mental." },
+        { name: "Geriatría", icon: <Users size={24} />, desc: "Atención médica integral enfocada en la salud y calidad de vida del adulto mayor." },
+        { name: "Fonoaudiología", icon: <Ear size={24} />, desc: "Evaluación y tratamiento de trastornos de la comunicación, lenguaje y audición." },
+        { name: "Oncología", icon: <Activity size={24} />, desc: "Prevención, diagnóstico y tratamiento integral de patologías oncológicas." },
+        { name: "Neurología Infantil", icon: <Brain size={24} />, desc: "Especialistas en el desarrollo y enfermedades neurológicas en niños y adolescentes." },
+        { name: "Nefrología", icon: <Stethoscope size={24} />, desc: "Estudio, diagnóstico y tratamiento de enfermedades que afectan los riñones." },
+        { name: "Gastroenterología", icon: <Activity size={24} />, desc: "Atención especializada en el sistema digestivo y sus trastornos." },
+        { name: "Psicopedagogía", icon: <Brain size={24} />, desc: "Acompañamiento y abordaje de procesos de aprendizaje y sus posibles dificultades." },
+        { name: "Dermatología", icon: <User size={24} />, desc: "Cuidado integral y tratamiento de afecciones de la piel, cabello y uñas." }
     ]
 
     return (
