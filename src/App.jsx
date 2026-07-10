@@ -32,7 +32,7 @@ import {
 } from 'lucide-react'
 
 // ─── Navbar ───────────────────────────────────────────────
-const Navbar = () => {
+const Navbar = ({ onHomeClick, onNavClick }) => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
 
@@ -54,7 +54,9 @@ const Navbar = () => {
             style={{ borderRadius: 0 }}
         >
             <div className="max-width-1400 px-8 flex justify-between items-center mx-auto">
-                <a href="#hero" className="flex items-center" style={{ opacity: 1 }}>
+                <a href="#hero" className="flex items-center" style={{ opacity: 1 }} onClick={(e) => {
+                    if (onHomeClick) onHomeClick();
+                }}>
                     <img src="/assets/logo.png" alt="CMI - Consultorios Médicos Irigoyen" style={{ height: '90px', width: 'auto' }} />
                 </a>
 
@@ -67,6 +69,9 @@ const Navbar = () => {
                             style={{ color: 'var(--text-secondary)' }}
                             onMouseEnter={e => e.target.style.color = 'var(--primary)'}
                             onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
+                            onClick={() => {
+                                if (onNavClick) onNavClick();
+                            }}
                         >
                             {link.name.toUpperCase()}
                         </a>
@@ -79,7 +84,7 @@ const Navbar = () => {
                         style={{ padding: '10px 24px', fontSize: '0.85rem' }}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
                         </svg>
                         WhatsApp
                     </a>
@@ -108,21 +113,24 @@ const Navbar = () => {
                             <a
                                 key={link.name}
                                 href={link.href}
-                                onClick={() => setIsOpen(false)}
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    if (onNavClick) onNavClick();
+                                }}
                                 style={{ color: 'var(--text-main)' }}
                             >
                                 {link.name}
                             </a>
                         ))}
-                        <a 
-                            href="https://wa.me/5493515955800" 
+                        <a
+                            href="https://wa.me/5493515955800"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn-primary flex items-center gap-3" 
+                            className="btn-primary flex items-center gap-3"
                             onClick={() => setIsOpen(false)}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
                             </svg>
                             WhatsApp
                         </a>
@@ -299,7 +307,7 @@ const Identity = () => {
 }
 
 // ─── Specialties ──────────────────────────────────────────
-const Specialties = () => {
+const Specialties = ({ onSelectSpecialty }) => {
     const list = [
         { name: "Clínica Médica", icon: <Stethoscope size={24} />, desc: "Atención integral de la salud del adulto con diagnóstico y seguimiento personalizado." },
         { name: "Pediatría", icon: <Baby size={24} />, desc: "Cuidado especializado de la salud de niños y adolescentes en todas las etapas." },
@@ -340,6 +348,10 @@ const Specialties = () => {
                             whileHover={{ y: -6 }}
                             className="glass-panel p-8 text-center cursor-pointer"
                             style={{ transition: 'var(--transition)' }}
+                            onClick={() => {
+                                if (onSelectSpecialty) onSelectSpecialty(item);
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
                         >
                             <div className="mx-auto mb-6" style={{
                                 width: '4rem', height: '4rem', borderRadius: 'var(--radius-lg)',
@@ -416,25 +428,160 @@ const Footer = () => (
             </div>
             <p className="text-sm" style={{ color: 'var(--text-on-dark-dim)' }}>© 2026 CMI - Consultorios Médicos Irigoyen. Todos los derechos reservados.</p>
             <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--primary-light)' }}>Excelencia Médica en Nueva Córdoba</p>
-            <div className="flex gap-6">
-                <a href="#" style={{ color: 'var(--text-on-dark-dim)' }}>Instagram</a>
-                <a href="#" style={{ color: 'var(--text-on-dark-dim)' }}>LinkedIn</a>
-                <a href="#" style={{ color: 'var(--text-on-dark-dim)' }}>WhatsApp</a>
-            </div>
         </div>
     </footer>
 )
 
+// ─── DoctorModal ───────────────────────────────────────────
+const DoctorModal = ({ doctor, specialty, onClose }) => (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.6)' }}>
+        <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="glass-panel w-full max-w-2xl overflow-hidden relative"
+            style={{ background: 'var(--bg-card)', padding: '2.5rem', maxHeight: '90vh', overflowY: 'auto' }}
+        >
+            <button
+                onClick={onClose}
+                className="absolute top-4 right-4"
+                style={{ color: 'var(--text-dim)', background: 'none', border: 'none', cursor: 'pointer' }}
+            >
+                <X size={24} />
+            </button>
+
+            <div className="flex items-center gap-6 mb-8">
+                <div style={{
+                    width: '6rem', height: '6rem', borderRadius: '50%',
+                    background: '#e5e7eb', overflow: 'hidden', flexShrink: 0
+                }}>
+                    <User size={48} className="mt-4 mx-auto" style={{ color: 'var(--text-dim)' }} />
+                </div>
+                <div>
+                    <h3 className="text-2xl font-semibold mb-1" style={{ color: 'var(--text-main)' }}>{doctor.name}</h3>
+                    <p className="text-md font-medium" style={{ color: 'var(--primary)' }}>{specialty.name}</p>
+                </div>
+            </div>
+
+            <div className="space-y-6 text-left">
+                <div>
+                    <h4 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-main)' }}>Formación Académica</h4>
+                    <p className="text-sm" style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                        Título de Médico Cirujano. Especialización y residencia médica completada con honores. Constante capacitación en áreas de interés.
+                    </p>
+                </div>
+                <div>
+                    <h4 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-main)' }}>Antecedentes</h4>
+                    <p className="text-sm" style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                        Amplia experiencia clínica. Participación activa en congresos nacionales e internacionales. Presentación de trabajos científicos y publicaciones en revistas médicas.
+                    </p>
+                </div>
+                <div>
+                    <h4 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-main)' }}>Resumen</h4>
+                    <p className="text-sm" style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                        Profesional altamente comprometido con la salud y bienestar integral, priorizando siempre la excelencia y calidez humana en el trato médico-paciente.
+                    </p>
+                </div>
+            </div>
+        </motion.div>
+    </div>
+)
+
+// ─── SpecialtyView ─────────────────────────────────────────
+const SpecialtyView = ({ specialty, onBack }) => {
+    const [selectedDoctor, setSelectedDoctor] = useState(null)
+    const doctors = [
+        { id: 1, name: 'Dr. Nombre Apellido' },
+        { id: 2, name: 'Dra. Nombre Apellido' },
+        { id: 3, name: 'Dr. Nombre Apellido' }
+    ]
+
+    return (
+        <section style={{ padding: '120px 5% 80px', minHeight: '100vh', background: 'var(--bg-main)' }}>
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+
+                <div className="flex items-center gap-4 mb-12">
+                    <div style={{
+                        width: '4rem', height: '4rem', borderRadius: 'var(--radius-lg)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        background: 'var(--primary-subtle)', color: 'var(--primary)'
+                    }}>
+                        {specialty.icon}
+                    </div>
+                    <h2 className="text-4xl">{specialty.name}</h2>
+                </div>
+
+                <p className="text-lg mb-12" style={{ color: 'var(--text-secondary)' }}>
+                    Nuestros profesionales son los siguientes:
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {/* Tarjetas de médicos de ejemplo (luego pueden ser dinámicas) */}
+                    {doctors.map((doc) => (
+                        <div key={doc.id} className="glass-panel p-6 text-center">
+                            <div className="mx-auto mb-4" style={{
+                                width: '6rem', height: '6rem', borderRadius: '50%',
+                                background: '#e5e7eb', overflow: 'hidden'
+                            }}>
+                                <User size={48} className="mt-4 mx-auto" style={{ color: 'var(--text-dim)' }} />
+                            </div>
+                            <h3 className="text-lg font-semibold mb-2">{doc.name}</h3>
+                            <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>{specialty.name}</p>
+                            <button
+                                className="btn-primary w-full text-sm py-2"
+                                style={{ padding: '8px' }}
+                                onClick={() => setSelectedDoctor(doc)}
+                            >
+                                Más información
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <AnimatePresence>
+                {selectedDoctor && (
+                    <DoctorModal
+                        doctor={selectedDoctor}
+                        specialty={specialty}
+                        onClose={() => setSelectedDoctor(null)}
+                    />
+                )}
+            </AnimatePresence>
+        </section>
+    )
+}
+
 // ─── App ──────────────────────────────────────────────────
 function App() {
+    const [selectedSpecialty, setSelectedSpecialty] = useState(null)
+
+    const handleNavClick = () => setSelectedSpecialty(null)
+
+    const handleCloseSpecialty = () => {
+        setSelectedSpecialty(null)
+        setTimeout(() => {
+            const el = document.getElementById('servicios')
+            if (el) el.scrollIntoView({ behavior: 'smooth' })
+        }, 100)
+    }
+
     return (
         <div className="app-container" style={{ background: 'var(--bg-main)' }}>
-            <Navbar />
-            <Hero />
-            <About />
-            <Identity />
-            <Specialties />
-            <Contact />
+            <Navbar onHomeClick={handleNavClick} onNavClick={handleNavClick} />
+
+            {selectedSpecialty ? (
+                <SpecialtyView specialty={selectedSpecialty} onBack={handleCloseSpecialty} />
+            ) : (
+                <>
+                    <Hero />
+                    <About />
+                    <Identity />
+                    <Specialties onSelectSpecialty={setSelectedSpecialty} />
+                    <Contact />
+                </>
+            )}
+
             <Footer />
         </div>
     )
