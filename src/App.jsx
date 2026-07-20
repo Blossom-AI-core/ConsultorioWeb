@@ -348,10 +348,10 @@ const Specialties = ({ onSelectSpecialty }) => {
                             whileHover={{ y: -6 }}
                             className="glass-panel p-8 text-center cursor-pointer"
                             style={{ transition: 'var(--transition)' }}
-                            onClick={() => {
-                                if (onSelectSpecialty) onSelectSpecialty(item);
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-                            }}
+                        // onClick={() => {
+                        //     if (onSelectSpecialty) onSelectSpecialty(item);
+                        //     window.scrollTo({ top: 0, behavior: 'smooth' });
+                        // }}
                         >
                             <div className="mx-auto mb-6" style={{
                                 width: '4rem', height: '4rem', borderRadius: 'var(--radius-lg)',
