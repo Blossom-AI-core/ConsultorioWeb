@@ -319,6 +319,11 @@ const Identity = () => {
     )
 }
 
+// Especialidades que tienen habilitada la vista detallada al hacer clic
+const ENABLED_SPECIALTIES = [
+    "Traumatología"
+]
+
 // ─── Specialties ──────────────────────────────────────────
 const Specialties = ({ onSelectSpecialty }) => {
     const list = [
@@ -364,29 +369,34 @@ const Specialties = ({ onSelectSpecialty }) => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {list.map((item, idx) => (
-                        <motion.div
-                            key={idx}
-                            whileHover={{ y: -6 }}
-                            className="glass-panel p-8 text-center cursor-pointer"
-                            style={{ transition: 'var(--transition)' }}
-                        // onClick={() => {
-                        //     if (onSelectSpecialty) onSelectSpecialty(item);
-                        //     window.scrollTo({ top: 0, behavior: 'smooth' });
-                        // }}
-                        >
-                            <div className="mx-auto mb-6" style={{
-                                width: '4rem', height: '4rem', borderRadius: 'var(--radius-lg)',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                background: 'var(--primary-subtle)', color: 'var(--primary)',
-                                transition: 'var(--transition)'
-                            }}>
-                                {item.icon}
-                            </div>
-                            <h3 className="text-xl mb-4" style={{ color: 'var(--text-main)' }}>{item.name}</h3>
-                            <p className="text-sm mb-6" style={{ color: 'var(--text-dim)' }}>{item.desc}</p>
-                        </motion.div>
-                    ))}
+                    {list.map((item, idx) => {
+                        const isClickable = ENABLED_SPECIALTIES.includes(item.name)
+
+                        return (
+                            <motion.div
+                                key={idx}
+                                whileHover={isClickable ? { y: -6 } : {}}
+                                className={`glass-panel p-8 text-center ${isClickable ? 'cursor-pointer' : ''}`}
+                                style={{ transition: 'var(--transition)' }}
+                                onClick={() => {
+                                    if (isClickable && onSelectSpecialty) {
+                                        onSelectSpecialty(item);
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }
+                                }}
+                            >
+                                <div className="mx-auto mb-6" style={{
+                                    width: '4rem', height: '4rem', borderRadius: 'var(--radius-lg)',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    background: 'var(--primary-subtle)', color: 'var(--primary)',
+                                    transition: 'var(--transition)'
+                                }}>
+                                    {item.icon}
+                                </div>
+                                <h3 className="text-xl mb-4" style={{ color: 'var(--text-main)' }}>{item.name}</h3>
+                                <p className="text-sm mb-6" style={{ color: 'var(--text-dim)' }}>{item.desc}</p>
+                            </motion.div>
+                    )})}
                 </div>
             </div>
         </section>
@@ -509,14 +519,23 @@ const DoctorModal = ({ doctor, specialty, onClose }) => (
     </div>
 )
 
+// Base de datos de médicos por especialidad
+const DOCTORS_BY_SPECIALTY = {
+    "Traumatología": [
+        { id: 1, name: 'Dr. Jorge Diaz' }
+    ]
+}
+
+const DEFAULT_DOCTORS = [
+    { id: 1, name: 'Dr. Nombre Apellido' },
+    { id: 2, name: 'Dra. Nombre Apellido' },
+    { id: 3, name: 'Dr. Nombre Apellido' }
+]
+
 // ─── SpecialtyView ─────────────────────────────────────────
 const SpecialtyView = ({ specialty, onBack }) => {
     const [selectedDoctor, setSelectedDoctor] = useState(null)
-    const doctors = [
-        { id: 1, name: 'Dr. Nombre Apellido' },
-        { id: 2, name: 'Dra. Nombre Apellido' },
-        { id: 3, name: 'Dr. Nombre Apellido' }
-    ]
+    const doctors = DOCTORS_BY_SPECIALTY[specialty?.name] || DEFAULT_DOCTORS
 
     return (
         <section style={{ padding: '120px 5% 80px', minHeight: '100vh', background: 'var(--bg-main)' }}>
