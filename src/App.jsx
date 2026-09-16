@@ -487,7 +487,11 @@ const DoctorModal = ({ doctor, specialty, onClose }) => (
                     width: '6rem', height: '6rem', borderRadius: '50%',
                     background: '#e5e7eb', overflow: 'hidden', flexShrink: 0
                 }}>
-                    <User size={48} className="mt-4 mx-auto" style={{ color: 'var(--text-dim)' }} />
+                    {doctor.image ? (
+                        <img src={doctor.image} alt={doctor.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    ) : (
+                        <User size={48} className="mt-4 mx-auto" style={{ color: 'var(--text-dim)' }} />
+                    )}
                 </div>
                 <div>
                     <h3 className="text-2xl font-semibold mb-1" style={{ color: 'var(--text-main)' }}>{doctor.name}</h3>
@@ -522,7 +526,11 @@ const DoctorModal = ({ doctor, specialty, onClose }) => (
 // Base de datos de médicos por especialidad
 const DOCTORS_BY_SPECIALTY = {
     "Traumatología": [
-        { id: 1, name: 'Dr. Jorge Diaz' }
+        {
+            id: 1,
+            name: 'Dr. Jorge Diaz',
+            image: '/assets/fotos/JorgeDiaz.jpeg'
+        }
     ]
 }
 
@@ -564,7 +572,11 @@ const SpecialtyView = ({ specialty, onBack }) => {
                                 width: '6rem', height: '6rem', borderRadius: '50%',
                                 background: '#e5e7eb', overflow: 'hidden'
                             }}>
-                                <User size={48} className="mt-4 mx-auto" style={{ color: 'var(--text-dim)' }} />
+                                {doc.image ? (
+                                    <img src={doc.image} alt={doc.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                ) : (
+                                    <User size={48} className="mt-4 mx-auto" style={{ color: 'var(--text-dim)' }} />
+                                )}
                             </div>
                             <h3 className="text-lg font-semibold mb-2">{doc.name}</h3>
                             <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>{specialty.name}</p>
