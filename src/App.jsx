@@ -580,13 +580,13 @@ const SpecialtyView = ({ specialty, onBack }) => {
                             </div>
                             <h3 className="text-lg font-semibold mb-2">{doc.name}</h3>
                             <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>{specialty.name}</p>
-                            <button
+                            {/* <button
                                 className="btn-primary w-full text-sm py-2"
                                 style={{ padding: '8px' }}
                                 onClick={() => setSelectedDoctor(doc)}
                             >
                                 Más información
-                            </button>
+                            </button> */}
                         </div>
                     ))}
                 </div>
