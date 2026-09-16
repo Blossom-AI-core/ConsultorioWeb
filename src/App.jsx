@@ -343,8 +343,17 @@ const Specialties = ({ onSelectSpecialty }) => {
         { name: "Nefrología", icon: <Stethoscope size={24} />, desc: "Estudio, diagnóstico y tratamiento de enfermedades que afectan los riñones." },
         { name: "Gastroenterología", icon: <Activity size={24} />, desc: "Atención especializada en el sistema digestivo y sus trastornos." },
         { name: "Psicopedagogía", icon: <Brain size={24} />, desc: "Acompañamiento y abordaje de procesos de aprendizaje y sus posibles dificultades." },
-        { name: "Dermatología", icon: <User size={24} />, desc: "Cuidado integral y tratamiento de afecciones de la piel, cabello y uñas." }
+        { name: "Dermatología", icon: <User size={24} />, desc: "Cuidado integral y tratamiento de afecciones de la piel, cabello y uñas." },
+        { name: "Cabeza y Cuello", icon: <User size={24} />, desc: "Diagnóstico y seguimiento clínico de patologías tiroideas, ganglionares y de glándulas salivales." },
+        { name: "Neurologia Adultos", icon: <User size={24} />, desc: "Evaluación y tratamiento de enfermedades neurológicas." },
+        { name: "Urología", icon: <User size={24} />, desc: "Diagnóstico y seguimiento de afecciones renales, prostáticas y del tracto urinario." },
+        { name: "Flebologia y Linfologia", icon: <User size={24} />, desc: "Diagnóstico y control de várices, insuficiencia venosa y trastornos del sistema linfático." },
     ]
+
+    
+
+
+
 
     return (
         <section id="servicios" style={{ padding: '80px 5%' }}>
