@@ -321,7 +321,7 @@ const Identity = () => {
 
 // Especialidades que tienen habilitada la vista detallada al hacer clic
 const ENABLED_SPECIALTIES = [
-    "Traumatología"
+    "Traumatología", "Ginecología", "Pediatría", "Psicología", "Fonoaudiología"
 ]
 
 // ─── Specialties ──────────────────────────────────────────
@@ -355,7 +355,7 @@ const Specialties = ({ onSelectSpecialty }) => {
         { name: "Flebologia y Linfologia", icon: <User size={24} />, desc: "Diagnóstico y control de várices, insuficiencia venosa y trastornos del sistema linfático." },
     ]
 
-    
+
 
 
 
@@ -396,7 +396,8 @@ const Specialties = ({ onSelectSpecialty }) => {
                                 <h3 className="text-xl mb-4" style={{ color: 'var(--text-main)' }}>{item.name}</h3>
                                 <p className="text-sm mb-6" style={{ color: 'var(--text-dim)' }}>{item.desc}</p>
                             </motion.div>
-                    )})}
+                        )
+                    })}
                 </div>
             </div>
         </section>
@@ -531,7 +532,47 @@ const DOCTORS_BY_SPECIALTY = {
             name: 'Dr. Jorge Diaz',
             image: '/assets/fotos/JorgeDiaz.jpeg'
         }
-    ]
+    ],
+    "Ginecología": [
+        {
+            id: 1,
+            name: 'Dra. Ana Luisa Cornejo',
+            image: '/assets/fotos/AnaCornejo.jpeg'
+        },
+    ],
+    "Pediatría": [
+        {
+            id: 1,
+            name: 'Dra. Teresa Blacizza',
+            image: '/assets/fotos/TeresaBlacizza.jpeg'
+        },
+    ],
+    "Psicología": [
+        {
+            id: 1,
+            name: 'Dra. Cecilia Davico',
+            image: '/assets/fotos/CeciliaDavico.jpeg'
+        },
+        {
+            id: 2,
+            name: 'Dra. Maria Cruz Rodriguez',
+            image: '/assets/fotos/MariaCruzRodriguez.jpeg'
+        },
+        {
+            id: 3,
+            name: 'Dra. Paz Najera',
+            image: '/assets/fotos/PazNajera.jpeg'
+        },
+    ],
+    "Fonoaudiología": [
+        {
+            id: 1,
+            name: 'Dra. Maria Elena Ferreyra',
+            image: '/assets/fotos/MariaElenaFerreyra.jpeg'
+        }
+    ],
+
+
 }
 
 const DEFAULT_DOCTORS = [
