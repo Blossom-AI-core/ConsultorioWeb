@@ -112,14 +112,26 @@ const Navbar = ({ onHomeClick, onNavClick }) => {
                     </a>
                 </div>
 
-                {/* Mobile menu toggle */}
-                <button
-                    className="md:hidden"
-                    onClick={() => setIsOpen(!isOpen)}
-                    style={{ color: 'var(--text-main)', background: 'none', border: 'none', cursor: 'pointer' }}
-                >
-                    {isOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+                                {/* Mobile: chatbot + menu toggle */}
+                <div className="md:hidden flex items-center gap-3">
+                    <a
+                        href="https://wa.me/5493515955800"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-bot flex items-center gap-2"
+                        style={{ padding: '8px 16px', fontSize: '0.8rem' }}
+                        onClick={abrirChat}
+                    >
+                        <Bot size={16} />
+                        Chatbot
+                    </a>
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        style={{ color: 'var(--text-main)', background: 'none', border: 'none', cursor: 'pointer' }}
+                    >
+                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile nav */}
@@ -144,7 +156,7 @@ const Navbar = ({ onHomeClick, onNavClick }) => {
                                 {link.name}
                             </a>
                         ))}
-                        <a
+                        {/* <a
                             href="https://wa.me/5493515955800"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -153,7 +165,7 @@ const Navbar = ({ onHomeClick, onNavClick }) => {
                         >
                             <Bot size={20} />
                             Chatbot
-                        </a>
+                        </a> */}
                     </motion.div>
                 )}
             </AnimatePresence>
