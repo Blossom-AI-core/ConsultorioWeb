@@ -156,6 +156,24 @@ const Navbar = ({ onHomeClick, onNavClick }) => {
                                 {link.name}
                             </a>
                         ))}
+
+                                                <button
+                            onClick={() => setIsOpen(false)}
+                            aria-label="Cerrar menú"
+                            className="flex items-center justify-center"
+                            style={{
+                                width: '56px',
+                                height: '56px',
+                                borderRadius: '50%',
+                                border: '2px solid var(--border-light)',
+                                background: 'white',
+                                color: 'var(--text-main)',
+                                cursor: 'pointer',
+                                marginTop: '1rem'
+                            }}
+                        >
+                            <X size={28} />
+                        </button>
                         {/* <a
                             href="https://wa.me/5493515955800"
                             target="_blank"
