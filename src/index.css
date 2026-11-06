@@ -990,20 +990,14 @@ nav img {
 .hero-visual {
     position: relative;
     isolation: isolate;
-    width: 100%;
+    width: min(100%, 560px);
+    justify-self: end;
     max-height: 640px;
-    aspect-ratio: .94;
+    aspect-ratio: 1.18;
     overflow: hidden;
+    border-radius: 20px;
     background: #dce8e4;
     box-shadow: 0 28px 72px rgba(31, 55, 49, .16);
-}
-
-.hero-visual::after {
-    position: absolute;
-    z-index: 1;
-    inset: 30% 0 0;
-    content: '';
-    background: linear-gradient(180deg, transparent, rgba(12, 31, 34, .68));
 }
 
 .hero-visual img,
@@ -1267,6 +1261,8 @@ nav img {
     }
 
     .hero-visual {
+        width: 96%;
+        justify-self: center;
         max-height: none;
         aspect-ratio: 1.08;
     }

@@ -222,12 +222,7 @@ const Hero = () => (
                 transition={{ duration: 0.9, delay: 0.12 }}
                 className="hero-visual"
             >
-                <img src="/assets/hero.png" alt="Imagen ilustrativa de profesionales conversando en un espacio de atención médica" />
-                <div className="hero-image-caption">
-                    <span>Espacio de atención · Imagen ilustrativa</span>
-                    <strong>Atención cercana, en cada consulta.</strong>
-                </div>
-                <div className="hero-image-index" aria-hidden="true">01 <span>/</span> 03</div>
+                <img src="/assets/lugar/main.jpeg" alt="Sala de espera de Consultorios Médicos Irigoyen" />
             </motion.div>
         </div>
         <div className="hero-bottomline">
