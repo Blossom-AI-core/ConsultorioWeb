@@ -45,6 +45,7 @@ const Navbar = ({ onHomeClick, onNavClick }) => {
 
     const navLinks = [
         { name: 'Nosotros', href: '#nosotros' },
+        { name: 'Espacios', href: '#espacios' },
         { name: 'Servicios Médicos', href: '#servicios' },
         { name: 'Contacto', href: '#contacto' }
     ]
@@ -193,56 +194,97 @@ const Navbar = ({ onHomeClick, onNavClick }) => {
 
 // ─── Hero ─────────────────────────────────────────────────
 const Hero = () => (
-    <section className="min-h-screen flex flex-col items-center justify-center relative pt-20 overflow-hidden" id="hero">
+    <section className="hero-section relative overflow-hidden" id="hero">
         <div className="hero-bg" />
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-            style={{ maxWidth: '48rem' }}
-        >
-            <span className="badge-accent mb-6" style={{ display: 'inline-block' }}>
-                Excelencia médica personalizada
-            </span>
-            <h1 className="mb-8 leading-tight" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
-                Cuidando tu salud, <br />
-                <span style={{ color: 'var(--primary)' }}>cuidando tu vida.</span>
-            </h1>
-            <p className="text-lg mb-12 mx-auto" style={{ color: 'var(--text-dim)', maxWidth: '42rem', lineHeight: '1.8' }}>
-                Contamos con especialistas de primer nivel y la tecnología más avanzada para brindarte la atención que tú y tu familia merecen.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#servicios" className="btn-primary text-lg px-10 text-center">Nuestros Servicios</a>
-                <a href="#nosotros" className="btn-secondary text-lg text-center">Sobre Nosotros</a>
-            </div>
-        </motion.div>
+        <div className="hero-layout">
+            <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className="hero-copy"
+            >
+                <span className="badge-accent mb-6">Excelencia médica personalizada</span>
+                <h1 className="mb-8 leading-tight">
+                    Cuidamos tu salud. <span>Estamos cerca.</span>
+                </h1>
+                <p className="text-lg mb-12" style={{ color: 'var(--text-dim)', maxWidth: '38rem', lineHeight: '1.8' }}>
+                    Especialistas, tecnología y calidez humana para acompañarte en cada etapa de tu salud.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                    <a href="#servicios" className="btn-primary text-lg px-10 text-center">Conocé nuestras especialidades</a>
+                    <a href="#contacto" className="btn-secondary text-lg text-center">Cómo llegar</a>
+                </div>
+            </motion.div>
 
-        {/* Decorative floating circles */}
-        <motion.div
-            animate={{ y: [0, -20, 0], opacity: [0.15, 0.3, 0.15] }}
-            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            className="absolute hidden lg:block"
-            style={{ top: '25%', left: '10%' }}
-        >
-            <div style={{
-                width: '8rem', height: '8rem', borderRadius: '50%',
-                border: '2px solid rgba(13, 148, 136, 0.15)', filter: 'blur(1px)'
-            }} />
-        </motion.div>
-        <motion.div
-            animate={{ y: [0, 20, 0], opacity: [0.1, 0.25, 0.1] }}
-            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-            className="absolute hidden lg:block"
-            style={{ bottom: '25%', right: '15%' }}
-        >
-            <div style={{
-                width: '16rem', height: '16rem', borderRadius: '50%',
-                border: '2px solid rgba(13, 148, 136, 0.08)', filter: 'blur(2px)'
-            }} />
-        </motion.div>
+            <motion.div
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.9, delay: 0.12 }}
+                className="hero-visual"
+            >
+                <img src="/assets/hero.png" alt="Imagen ilustrativa de profesionales conversando en un espacio de atención médica" />
+                <div className="hero-image-caption">
+                    <span>Espacio de atención · Imagen ilustrativa</span>
+                    <strong>Atención cercana, en cada consulta.</strong>
+                </div>
+                <div className="hero-image-index" aria-hidden="true">01 <span>/</span> 03</div>
+            </motion.div>
+        </div>
+        <div className="hero-bottomline">
+            <span>Hipólito Yrigoyen 31 · Piso 8</span>
+            <a href="#espacios">Conocé nuestros espacios <ChevronRight size={16} /></a>
+        </div>
     </section>
 )
+
+// ─── Spaces ───────────────────────────────────────────────
+const Spaces = () => {
+    const images = [
+        {
+            src: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1400&q=85',
+            alt: 'Consultorio médico luminoso',
+            title: 'Consultorios',
+            className: 'space-photo-main'
+        },
+        {
+            src: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1000&q=85',
+            alt: 'Pasillo de un centro de salud',
+            title: 'Un entorno sereno',
+            className: 'space-photo-tall'
+        },
+        {
+            src: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1000&q=85',
+            alt: 'Espacio de atención clínica',
+            title: 'Atención cercana',
+            className: 'space-photo-wide'
+        }
+    ]
+
+    return (
+        <section id="espacios" className="spaces-section">
+            <div className="spaces-inner">
+                <div className="spaces-heading">
+                    <div>
+                        <span className="section-eyebrow">Un lugar para sentirte bien</span>
+                        <h2>La tranquilidad también <span>es parte del cuidado.</span></h2>
+                    </div>
+                    <div className="spaces-intro">
+                        <p>Un entorno amable y pensado para que cada visita se sienta más simple, desde que llegás.</p>
+                        <span className="spaces-note">Galería ilustrativa · Fotos reales próximamente</span>
+                    </div>
+                </div>
+                <div className="spaces-gallery">
+                    {images.map((image, index) => (
+                        <figure className={`space-photo ${image.className}`} key={image.title}>
+                            <img src={image.src} alt={image.alt} loading="lazy" />
+                            <figcaption><span>0{index + 1}</span>{image.title}</figcaption>
+                        </figure>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )
+}
 
 // ─── About ────────────────────────────────────────────────
 const About = () => (
@@ -707,6 +749,7 @@ function App() {
                 <>
                     <Hero />
                     <About />
+                    <Spaces />
                     <Identity />
                     <Specialties onSelectSpecialty={setSelectedSpecialty} />
                     <Contact />
