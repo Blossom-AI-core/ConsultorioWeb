@@ -287,23 +287,17 @@ const About = () => (
         <div className="flex flex-col lg:flex-row gap-16 items-center" style={{ maxWidth: '1400px', margin: '0 auto' }}>
             <div className="w-full lg:w-1/2 relative">
                 <div className="overflow-hidden relative z-10" style={{
-                    aspectRatio: '4/5', borderRadius: '24px',
+                    width: '92%', aspectRatio: '4/5', borderRadius: '24px', margin: '0 auto',
                     boxShadow: 'var(--shadow-card)', border: '1px solid var(--border-light)', padding: '0.5rem',
                     background: 'var(--bg-card)'
                 }}>
                     <div className="w-full h-full relative overflow-hidden" style={{ borderRadius: '20px', background: '#e5e7eb' }}>
                         <img
-                            src="/assets/hero.png"
-                            alt="Nuestro Equipo Médico"
+                            src="/assets/lugar/nosotros.jpeg"
+                            alt="Consultorios Médicos Irigoyen"
                             className="w-full h-full"
                             style={{ objectFit: 'cover' }}
                         />
-                        <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.4), transparent)' }} />
-                        <p className="absolute z-20 font-playfair italic text-xl" style={{
-                            bottom: '2rem', left: '2rem', right: '2rem', color: 'rgba(255,255,255,0.95)'
-                        }}>
-                            "El compromiso con la vida es nuestra razón de ser, brindando soluciones humanas para cada paciente."
-                        </p>
                     </div>
                 </div>
 
