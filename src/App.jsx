@@ -205,10 +205,10 @@ const Hero = () => (
             >
                 <span className="badge-accent mb-6">Excelencia médica personalizada</span>
                 <h1 className="mb-8 leading-tight">
-                    Cuidamos tu salud. <span>Estamos cerca.</span>
+                    Cuidamos tu salud. <span>cuidando tu vida.</span>
                 </h1>
                 <p className="text-lg mb-12" style={{ color: 'var(--text-dim)', maxWidth: '38rem', lineHeight: '1.8' }}>
-                    Especialistas, tecnología y calidez humana para acompañarte en cada etapa de tu salud.
+                    Contamos con especialistas de primer nivel y la tecnología más avanzada para brindarte la atención que tú y tu familia merecen.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                     <a href="#servicios" className="btn-primary text-lg px-10 text-center">Conocé nuestras especialidades</a>
@@ -236,22 +236,12 @@ const Hero = () => (
 const Spaces = () => {
     const images = [
         {
-            src: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1400&q=85',
-            alt: 'Consultorio médico luminoso',
-            title: 'Consultorios',
-            className: 'space-photo-main'
+            src: '/assets/lugar/2.jpeg',
+            alt: 'Espacio de atención de CMI'
         },
         {
-            src: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1000&q=85',
-            alt: 'Pasillo de un centro de salud',
-            title: 'Un entorno sereno',
-            className: 'space-photo-tall'
-        },
-        {
-            src: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1000&q=85',
-            alt: 'Espacio de atención clínica',
-            title: 'Atención cercana',
-            className: 'space-photo-wide'
+            src: '/assets/lugar/3.jpeg',
+            alt: 'Instalaciones de CMI'
         }
     ]
 
@@ -263,16 +253,11 @@ const Spaces = () => {
                         <span className="section-eyebrow">Un lugar para sentirte bien</span>
                         <h2>La tranquilidad también <span>es parte del cuidado.</span></h2>
                     </div>
-                    <div className="spaces-intro">
-                        <p>Un entorno amable y pensado para que cada visita se sienta más simple, desde que llegás.</p>
-                        <span className="spaces-note">Galería ilustrativa · Fotos reales próximamente</span>
-                    </div>
                 </div>
                 <div className="spaces-gallery">
-                    {images.map((image, index) => (
-                        <figure className={`space-photo ${image.className}`} key={image.title}>
+                    {images.map(image => (
+                        <figure className="space-photo" key={image.src}>
                             <img src={image.src} alt={image.alt} loading="lazy" />
-                            <figcaption><span>0{index + 1}</span>{image.title}</figcaption>
                         </figure>
                     ))}
                 </div>
