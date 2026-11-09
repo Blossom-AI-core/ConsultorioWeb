@@ -374,7 +374,7 @@ const Identity = () => {
 
 // Especialidades que tienen habilitada la vista detallada al hacer clic
 const ENABLED_SPECIALTIES = [
-    "Traumatología", "Ginecología", "Pediatría", "Psicología", "Fonoaudiología"
+    "Traumatología", "Ginecología", "Pediatría", "Cirugía General", "Psicología", "Fonoaudiología", "Flebologia y Linfologia"
 ]
 
 // ─── Specialties ──────────────────────────────────────────
@@ -600,6 +600,13 @@ const DOCTORS_BY_SPECIALTY = {
             image: '/assets/fotos/TeresaBlacizza.jpeg'
         },
     ],
+    "Cirugía General": [
+        {
+            id: 1,
+            name: 'Dr. Hugo Menoyo',
+            image: '/assets/fotos/Hugo Menoyo- Cirugia General.jpeg'
+        }
+    ],
     "Psicología": [
         {
             id: 1,
@@ -616,12 +623,24 @@ const DOCTORS_BY_SPECIALTY = {
             name: 'Dra. Paz Najera',
             image: '/assets/fotos/PazNajera.jpeg'
         },
+        {
+            id: 4,
+            name: 'Dra. Guadalupe Villalba',
+            image: '/assets/fotos/Guadalupe Villalba - Psicologia.jpeg'
+        },
     ],
     "Fonoaudiología": [
         {
             id: 1,
             name: 'Dra. Maria Elena Ferreyra',
             image: '/assets/fotos/MariaElenaFerreyra.jpeg'
+        }
+    ],
+    "Flebologia y Linfologia": [
+        {
+            id: 1,
+            name: 'Dr. Marcelo Morales',
+            image: '/assets/fotos/Marcelo Morales - Flebologia.jpeg'
         }
     ],
 
